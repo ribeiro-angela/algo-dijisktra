@@ -1,6 +1,6 @@
 # SAE2-02
 
-Angela Dos Santos Ribeiro /n
+Angela Dos Santos Ribeiro 
 Anastasia Minkov
 Gabriel Saltré
 Romann Greco Bruleporteeeee
