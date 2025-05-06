@@ -69,8 +69,6 @@ public class GrapheHHAdj implements VarGraph {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Graphe : { ");
-
 		boolean first = true;
 		for (Map.Entry<String, Map<String, Integer>> entry : adjacence.entrySet()) {
 			String source = entry.getKey();

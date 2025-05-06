@@ -1,80 +1,71 @@
 package dijkstra.test;
 
-import graph.GrapheHHAdj;
-import graph.VarGraph;
-import graph.ShortestPath.Distances;
-import dijkstra.Dijkstra;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.List;
+import graph.Graph;
+import graph.GrapheHHAdj;
+import graph.ShortestPath.Distances;
+import graph.VarGraph;
+import org.junit.jupiter.api.Test;
 
-public class DijkstraTest {
-	public static void main(String[] args) {
-		// Création d'un graphe avec l'implémentation GrapheHHAdj
-		VarGraph graphe = new GrapheHHAdj();
+import dijkstra.Dijkstra;
 
-		// Ajout de sommets
-		graphe.ajouterSommet("A");
-		graphe.ajouterSommet("B");
-		graphe.ajouterSommet("C");
-		graphe.ajouterSommet("D");
-		graphe.ajouterSommet("E");
-		graphe.ajouterSommet("F");
+class DijkstraTest {
+	private static final String GRAPH1 = "A-B(6), A-C(1), A-D(2), B-E(1), C-E(4), D-B(1), E-F(1)";
+	private static final String GRAPH_NEG = "A-B(6), A-C(1), A-D(2), B-E(-3), C-E(4), D-B(1), E-F(1)"; // B-E negatif !
+	private static final String FROM = "A";
+	private static final String TO = "F";
+	private static final int EXPECTED_DIST = 5;
+	private static final List<String> EXPECTED_PATH = List.of("F", "E", "B", "D", "A"); // in pred order
+	private static final Dijkstra<String> dijkstra = new Dijkstra<>();
 
-		// Ajout d'arcs
-		graphe.ajouterArc("A", "B", 6);
-		graphe.ajouterArc("A", "C", 1);
-		graphe.ajouterArc("A", "D", 2);
-		graphe.ajouterArc("B", "E", 1);
-		graphe.ajouterArc("C", "E", 4);
-		graphe.ajouterArc("D", "B", 1);
-		graphe.ajouterArc("E", "F", 1);
+	@Test
+	void test() {
+		VarGraph g = new GrapheHHAdj();
+		g.peupler(GRAPH1);
+		tester(g);
+	}
 
-		// Affichage du graphe
-		System.out.println("Graphe créé manuellement:");
-		System.out.println(graphe);
+	void tester(Graph<String> g) {
+		Distances<String> dst = dijkstra.compute(g, FROM);
+		assertEquals(EXPECTED_DIST, dst.dist().get(TO));
+		String c = EXPECTED_PATH.get(0);
+		for (String s : EXPECTED_PATH) {
+			assertEquals(s, c);
+			c = dst.pred().get(c);
+		}
+		assertNull(c);
+	}
 
-		// Test avec la méthode peupler
-		VarGraph graphe2 = new GrapheHHAdj();
-		graphe2.peupler("A-B(6), A-C(1), A-D(2), B-E(1), C-E(4), D-B(1), E-F(1)");
-
-		System.out.println("\nGraphe créé avec peupler:");
-		System.out.println(graphe2);
-
-		// Test de l'algorithme de Dijkstra
-		Dijkstra<String> dijkstra = new Dijkstra<>();
-		Distances<String> resultats = dijkstra.compute(graphe, "A");
-
-		// Affichage des résultats
-		System.out.println("\nRésultats de Dijkstra à partir de A:");
-		System.out.println("Distances: " + resultats.dist());
-		System.out.println("Prédécesseurs: " + resultats.pred());
-
-		// Affichage du chemin de A à F
-		String sommetCible = "F";
-		System.out.println("\nChemin de A à " + sommetCible + ":");
-
+	@Test
+	void pasDeValuationNegative() {
+		VarGraph g = new GrapheHHAdj();
+		g.peupler(GRAPH_NEG);
+		assertThrows(IllegalArgumentException.class,
+				()->  dijkstra.compute(g, FROM));
+	}
+	@Test
+	void utilisationDuResultat() {
+		VarGraph g = new GrapheHHAdj();
+		g.peupler(GRAPH1);
+		Distances<String> dst = dijkstra.compute(g, FROM);
+		System.out.println("Graphe : " + g);
+		System.out.println("Distances de A : " + dst.dist());
+		System.out.println("Predecesseurs : " + dst.pred());
+		System.out.println("Distance de " + FROM + " à " + TO + " : " + dst.dist().get(TO));
+		System.out.print("Chemin de " + FROM + " à " + TO + " : ");
+		String sommet = TO;
 		Deque<String> pile = new ArrayDeque<>();
-		String sommet = sommetCible;
-
 		while (sommet != null) {
 			pile.push(sommet);
-			sommet = resultats.pred().get(sommet);
+			sommet = dst.pred().get(sommet);
 		}
-
-		while (!pile.isEmpty()) {
+		while(!pile.isEmpty()) {
 			System.out.print(pile.pop() + " ");
 		}
 		System.out.println();
-
-		// Test avec arc de valuation négative
-		try {
-			VarGraph grapheNegatif = new GrapheHHAdj();
-			grapheNegatif.peupler("A-B(6), A-C(1), A-D(2), B-E(-3), C-E(4), D-B(1), E-F(1)");
-			dijkstra.compute(grapheNegatif, "A");
-			System.out.println("ERREUR: Exception non levée pour un arc négatif!");
-		} catch (IllegalArgumentException e) {
-			System.out.println("\nTest d'arc négatif: Exception correctement levée: " + e.getMessage());
-		}
 	}
 }
