@@ -12,6 +12,7 @@
 ### Partie 1 – Algorithme de Dijkstra
 
 La première partie du projet est fonctionnelle. L'algorithme de Dijkstra a été correctement implémenté et testé. Il permet de calculer les chemins les plus courts dans un graphe, et son intégration est considérée comme terminée.
+Nous avons rajouté des Tests Unitaires supplementaires, pour verifier que tout le code de la partie 1 est fonctionnel
 
 ### Partie 2 – Intégration avec Checker
 
