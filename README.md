@@ -20,7 +20,7 @@ Nous avons rajouté des Tests Unitaires supplementaires, pour verifier que tout 
 - Difficultés avec type: INTEGER a la place de INT
 - Après plusieurs heures de débogage, les problèmes de lecture ont été résolus.
 - `Checker` fonctionne désormais correctement avec notre implémentation.
-- Les tests fournis sur Moodle passent avec succès.
+- Les tests fournis sur Moodle passent.
 
 ### Adaptateur
 
