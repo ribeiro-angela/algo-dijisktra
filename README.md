@@ -16,13 +16,23 @@ Nous avons rajouté des Tests Unitaires supplementaires, pour verifier que tout 
 
 ### Partie 2 – Intégration avec Checker
 
-Nous rencontrons actuellement des difficultés avec la classe `Checker`. Bien que les chemins d'accès aux fichiers `.maze` situés dans le dossier `bench` semblent corrects, nous ne parvenons pas à les lire dans notre programme.
-
-Nous avons vérifié que les chemins sont accessibles, mais l'ouverture ou la lecture effective des fichiers échoue, ce qui empêche `Checker` de fonctionner comme prévu. Ce blocage limite fortement notre capacité à valider cette partie du projet avec les tests fournis sur Moodle.
+- ❌ Difficultés initiales avec la lecture des fichiers `.maze` du dossier `bench`.
+- 🛠️ Après plusieurs heures de débogage, les problèmes de lecture ont été résolus.
+- ✔️ `Checker` fonctionne désormais correctement avec notre implémentation.
+- ✔️ Les tests fournis sur Moodle passent avec succès.
 
 ### Adaptateur
 
 L’adaptateur n’a pas encore été entièrement codé à ce stade du projet.
+
+## Tests
+
+J'ai rajouté des tests unitaire pour verifier que tout fonctionne corretement:
+- TestGrapheAvecBoucle
+- TestGrapheCheminsMultiples
+- TestGrapheConnexe
+- TestGrapheNonConnexe
+- TestGrapheValuationNegative
 
 ## Conclusion
 
