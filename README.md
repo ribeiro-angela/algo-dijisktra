@@ -2,7 +2,7 @@
 
 ## Groupe 108
 
-- Angela Dos Santos Ribeiro  
+- 👑 Angela Dos Santos Ribeiro 
 - Anastasia Minkov  
 - Gabriel Saltré  
 - Romann Greco Brulport  
