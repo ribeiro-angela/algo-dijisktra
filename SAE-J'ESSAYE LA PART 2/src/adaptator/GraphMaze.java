@@ -1,21 +1,29 @@
 package adaptator;
 
-import graph.Graph;
-import maze.Maze;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class GraphMaze<C> implements Graph<C> {
-    private final Maze<C> maze;
+import graph.Graph;
+import graph.Graph.Arc;
+import maze.Maze;
 
-    public GraphMaze(Maze<C> maze) {
+/**
+ * Adaptateur entre Maze et Graph.
+ * Transforme un labyrinthe en graphe non orienté non valué.
+ */
+public class GraphMaze<T extends Integer> implements Graph<T> {
+    private final Maze maze;
+
+    public GraphMaze(Maze maze) {
         this.maze = maze;
     }
 
     @Override
-    public List<Graph.Arc<C>> getSucc(C cell) {
-        return maze.openedNeighbours(cell).stream()
-                .map(neighbor -> new Graph.Arc<>(1, neighbor)) // Valuation = 1
-                .collect(Collectors.toList());
+    public List<Arc<T>> getSucc(T s) {
+        List<Arc<T>> arcs = new ArrayList<>();
+        for (Integer neighbor : maze.openedNeighbours(s)) {
+            arcs.add(new Arc<>(1, (T) Integer.valueOf(neighbor)));  // Non valué → valuation = 1
+        }
+        return arcs;
     }
 }
