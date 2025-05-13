@@ -24,7 +24,7 @@ Nous avons rajouté des Tests Unitaires supplementaires, pour verifier que tout 
 
 ### Adaptateur
 
-L’adaptateur a encore été entièrement codé.
+L’adaptateur a été entièrement codé.
 
 ## Tests
 
