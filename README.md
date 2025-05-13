@@ -24,7 +24,7 @@ Nous avons rajouté des Tests Unitaires supplementaires, pour verifier que tout 
 
 ### Adaptateur
 
-L’adaptateur n’a pas encore été entièrement codé à ce stade du projet.
+L’adaptateur a encore été entièrement codé.
 
 ## Tests
 
