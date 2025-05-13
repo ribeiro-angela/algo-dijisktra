@@ -16,10 +16,11 @@ Nous avons rajouté des Tests Unitaires supplementaires, pour verifier que tout 
 
 ### Partie 2 – Intégration avec Checker
 
-- ❌ Difficultés initiales avec la lecture des fichiers `.maze` du dossier `bench`.
-- 🛠️ Après plusieurs heures de débogage, les problèmes de lecture ont été résolus.
-- ✔️ `Checker` fonctionne désormais correctement avec notre implémentation.
-- ✔️ Les tests fournis sur Moodle passent avec succès.
+- Difficultés initiales avec la lecture des fichiers `.maze` du dossier `bench`.
+- Difficultés avec type: INTEGER a la place de INT
+- Après plusieurs heures de débogage, les problèmes de lecture ont été résolus.
+- `Checker` fonctionne désormais correctement avec notre implémentation.
+- Les tests fournis sur Moodle passent avec succès.
 
 ### Adaptateur
 
