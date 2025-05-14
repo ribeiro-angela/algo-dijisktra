@@ -37,4 +37,4 @@ J'ai rajouté des tests unitaire pour verifier que tout fonctionne corretement:
 
 ## Conclusion
 
-Nous avons finalisé la première partie du projet, mais nous sommes actuellement bloqués sur des problèmes liés à la lecture des fichiers `.maze` dans le cadre de la seconde partie. Cela nous empêche de faire fonctionner `Checker` et de passer les tests automatiquement.
+Nous avons finalisé la première partie du projet, et la deuxieme partie . Tous les tests founi passent automatiquement
