@@ -1,3 +1,6 @@
+/**
+ * Classe de test pour vérifier le comportement de l'algorithme de Dijkstra sur un graphe vide ou avec un sommet isolé.
+ */
 package dijkstra.test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -6,30 +9,37 @@ import graph.GrapheHHAdj;
 import dijkstra.Dijkstra;
 
 class TestGrapheVide {
+
+    /**
+     * Teste le comportement de l'algorithme de Dijkstra sur un graphe vide.
+     * Vérifie que seul le sommet de départ est présent dans les résultats,
+     * avec une distance de 0 et aucun prédécesseur.
+     */
     @Test
     void testGrapheVide() {
-        // Test avec un graphe vide
         GrapheHHAdj graph = new GrapheHHAdj();
         Dijkstra<String> dijkstra = new Dijkstra<>();
 
         var result = dijkstra.compute(graph, "A");
 
-        // Vérifier que seul le sommet de départ est présent
         assertEquals(1, result.dist().size());
         assertEquals(0, result.dist().get("A"));
         assertEquals(null, result.pred().get("A"));
     }
 
+    /**
+     * Teste le comportement de l'algorithme de Dijkstra sur un graphe contenant un sommet isolé.
+     * Vérifie que seul le sommet de départ est présent dans les résultats,
+     * avec une distance de 0 et aucun prédécesseur.
+     */
     @Test
     void testSommetIsolé() {
-        // Test avec un sommet isolé
         GrapheHHAdj graph = new GrapheHHAdj();
         graph.ajouterSommet("A");
         Dijkstra<String> dijkstra = new Dijkstra<>();
 
         var result = dijkstra.compute(graph, "A");
 
-        // Vérifier que seul le sommet de départ est présent
         assertEquals(1, result.dist().size());
         assertEquals(0, result.dist().get("A"));
         assertEquals(null, result.pred().get("A"));
