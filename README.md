@@ -34,6 +34,7 @@ J'ai rajouté des tests unitaire pour verifier que tout fonctionne corretement:
 - TestGrapheConnexe
 - TestGrapheNonConnexe
 - TestGrapheValuationNegative
+- TestGrapheVide 
 
 ## Conclusion
 
