@@ -14,13 +14,6 @@ import adaptator.GraphMaze;
 import dijkstra.Dijkstra;
 
 public class Animation {
-
-	/**
-	 *
-	 * @param  mazeFile
-	 *
-	 */
-
 	public static void animation(String mazeFile){
 		RegularMaze maze = null;
 		try {
@@ -80,7 +73,7 @@ public class Animation {
 	}
 
 
-	/**	 * Pause l'exécution du programme pendant une durée spécifiée.
+/**	 * Pause l'exécution du programme pendant une durée spécifiée.
 	 *
 	 * @param duration la durée de la pause en millisecondes
 	 */

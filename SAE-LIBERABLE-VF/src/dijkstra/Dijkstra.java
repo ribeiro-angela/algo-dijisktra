@@ -39,9 +39,7 @@ public class Dijkstra<T> implements ShortestPath<T> {
 
 	@Override
 	public Distances<T> compute(Graph<T> g, T src, Animator<T> animator) throws IllegalArgumentException {
-		// Structures de données pour stocker les résultats
-		Map<T, Integer> distances = new HashMap<>();
-		Map<T, T> predecessors = new HashMap<>();
+		Distances<T> r = new Distances<>(new HashMap<>(), new HashMap<>());
 
 		// Ensemble des sommets dont la distance minimale est déjà calculée définitivement
 		Set<T> settled = new HashSet<>();
@@ -50,8 +48,8 @@ public class Dijkstra<T> implements ShortestPath<T> {
 		PriorityQueue<Node<T>> priorityQueue = new PriorityQueue<>();
 
 		// Initialisation: distance de la source à elle-même est 0
-		distances.put(src, 0);
-		predecessors.put(src, null);
+		r.dist().put(src, 0);
+		r.pred().put(src, null);
 		priorityQueue.add(new Node<>(src, 0));
 
 		// Tant qu'il reste des sommets à traiter
@@ -84,13 +82,13 @@ public class Dijkstra<T> implements ShortestPath<T> {
 				// Si le sommet destination n'est pas encore traité définitivement
 				if (!settled.contains(v)) {
 					// Calculer la nouvelle distance
-					int newDistance = distances.get(u) + weight;
+					int newDistance = r.dist().get(u) + weight;
 
 					// Si c'est la première fois qu'on voit ce sommet ou si la nouvelle distance est plus petite
-					if (!distances.containsKey(v) || newDistance < distances.get(v)) {
+					if (!r.dist().containsKey(v) || newDistance < r.dist().get(v)) {
 						// Mettre à jour la distance et le prédécesseur
-						distances.put(v, newDistance);
-						predecessors.put(v, u);
+						r.dist().put(v, newDistance);
+						r.pred().put(v, u);
 
 						// Ajouter à la file de priorité avec la nouvelle distance
 						priorityQueue.add(new Node<>(v, newDistance));
@@ -99,6 +97,6 @@ public class Dijkstra<T> implements ShortestPath<T> {
 			}
 		}
 
-		return new Distances<>(distances, predecessors);
+		return r;
 	}
 }
