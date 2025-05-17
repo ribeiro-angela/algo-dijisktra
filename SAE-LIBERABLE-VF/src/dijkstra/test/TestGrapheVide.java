@@ -18,13 +18,17 @@ class TestGrapheVide {
     @Test
     void testGrapheVide() {
         GrapheHHAdj graph = new GrapheHHAdj();
+        test(graph);
+    }
+
+    private void test(GrapheHHAdj graph) {
         Dijkstra<String> dijkstra = new Dijkstra<>();
 
         var result = dijkstra.compute(graph, "A");
 
         assertEquals(1, result.dist().size());
         assertEquals(0, result.dist().get("A"));
-        assertEquals(null, result.pred().get("A"));
+        assertNull(result.pred().get("A"));
     }
 
     /**
@@ -33,15 +37,9 @@ class TestGrapheVide {
      * avec une distance de 0 et aucun prédécesseur.
      */
     @Test
-    void testSommetIsolé() {
+    void testSommetIsole() {
         GrapheHHAdj graph = new GrapheHHAdj();
         graph.ajouterSommet("A");
-        Dijkstra<String> dijkstra = new Dijkstra<>();
-
-        var result = dijkstra.compute(graph, "A");
-
-        assertEquals(1, result.dist().size());
-        assertEquals(0, result.dist().get("A"));
-        assertEquals(null, result.pred().get("A"));
+        test(graph);
     }
 }
