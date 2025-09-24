@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SAE 2.02 - Graphes et Labyrinthes
 ## Groupe 108
 - 👑 Angela Dos Santos Ribeiro 
@@ -44,7 +43,5 @@ Tous les tests fournis sur Moodle passent également.
 - Après débogage, tous les problèmes de lecture ont été résolus
 
 ## Conclusion
+
 Ce projet nous a permis d'appliquer concrètement les concepts de théorie des graphes, notamment l'algorithme de Dijkstra, et de développer une solution  pour la résolution de problèmes de chemin le plus court.
-=======
-# algo-dijisktra
->>>>>>> 3712ddabe2dfaf42ffee50154f26ea8633adc3bd
